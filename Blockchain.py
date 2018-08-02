@@ -68,3 +68,11 @@ class Blockchain:
 
     def toJson(self):
         return jsonpickle.encode(self)
+
+    def equal(self, blockchain):
+        if (len(self.blocks) != len(blockchain.blocks)):
+            return False
+        for i in range(len(self.blocks)):
+            if (not self.blocks[i].equal(blockchain.blocks[i])):
+                return False
+        return True

@@ -45,3 +45,11 @@ class Block:
     def isMined(self, diff=4):
         hash = self.getHash()
         return hash[0:diff] == "0"*diff
+
+    def equal(self, block):
+        self.blockNo = block.blockNo
+        self.transactions = block.tns
+        self.previousHash = block.prevHash
+
+        self.pounce = block.pounce
+        self.timeStamp = block.timeStamp
