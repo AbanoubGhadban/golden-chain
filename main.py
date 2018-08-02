@@ -23,10 +23,16 @@ def addList():
 def receive():
     global chain
     newChain = parseFromJson(request.data)
-    if (newChain.transactionsCount() > chain.transactionsCount()):
+    newTrCount = newChain.transactionsCount()
+    currentTrCount = chain.transactionsCount()
+    if (newTrCount > currentTrCount):
         if (not newChain.isValid()):
             return "Invalid Blockchain", 400
         chain = newChain
+        return "Chain Received"
+    elif (newTrCount == currentTrCount):
+        if (not chain.equal(chain)):
+            return "Invalid Blockchain", 400
         return "Chain Received"
     else:
         return "Chain Is less than current", 400
