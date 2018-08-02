@@ -12,6 +12,15 @@ class Blockchain:
         block.mine()
         self.blocks.append(block)
 
+    def blocksCount(self):
+        return len(self.blocks)
+
+    def transactionsCount(self):
+        count = 0
+        for block in self.blocks:
+            count += block.transactionsCount()
+        return count
+
     def addTransactions(self, transactions):
         tsLen = len(transactions)
         for i in range(tsLen/2):
