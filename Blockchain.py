@@ -1,5 +1,6 @@
 from Transaction import Transaction
 from Block import Block
+import jsonpickle
 
 
 class Blockchain:
@@ -34,3 +35,6 @@ class Blockchain:
             data += block.toString() + "\n"
             data += "*******************************\n"
         return data
+
+    def toJson(self):
+        return jsonpickle.encode(self)
