@@ -45,5 +45,12 @@ class Blockchain:
             data += "*******************************\n"
         return data
 
+    def addTransactionsFromJsonList(self, jsonTs):
+        ts = []
+        for jsonTr in jsonTs:
+            tr = Transaction.parseFromJsonObject(jsonTr)
+            ts.append(tr)
+        self.addTransactions(ts)
+
     def toJson(self):
         return jsonpickle.encode(self)
