@@ -11,6 +11,9 @@ class Block:
         self.pounce = 0
         self.timeStamp = int(time.time())
 
+    def transactionsCount(self):
+        return len(self.transactions)
+
     def toHashableString(self):
         data = "Block No: " + str(self.blockNo) + "\n"
         data += "Previous Hash: " + self.previousHash + "\n"
