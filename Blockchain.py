@@ -6,10 +6,11 @@ import jsonpickle
 class Blockchain:
     # smartContract == > code of renting a room in hotel
 
-    def __init__(self):
+    def __init__(self, diff=4):
         self.blocks = []
+        self.__diff = diff
         block = Block(0, [Transaction("Genesis", "Abanoub", 100)], "0000")
-        block.mine()
+        block.mine(self.__diff)
         self.blocks.append(block)
 
     def blocksCount(self):
@@ -33,7 +34,7 @@ class Blockchain:
         chainLen = len(self.blocks)
         prevHash = self.blocks[chainLen - 1].getHash()
         block = Block(chainLen, ts, prevHash)
-        block.mine()
+        block.mine(self.__diff)
         self.blocks.append(block)
 
     def toString(self):
