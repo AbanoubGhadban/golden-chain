@@ -9,7 +9,8 @@ class Blockchain:
     def __init__(self, diff=4):
         self.blocks = []
         self.__diff = diff
-        block = Block(0, [Transaction("Genesis", "Abanoub", 100)], "0000")
+        block = Block(
+            0, [Transaction("Genesis", "Abanoub", 100)], "0"*self.__diff)
         block.mine(self.__diff)
         self.blocks.append(block)
 
@@ -36,6 +37,18 @@ class Blockchain:
         block = Block(chainLen, ts, prevHash)
         block.mine(self.__diff)
         self.blocks.append(block)
+
+    def isValid(self):
+        len = self.blocksCount()
+        for i in range(len):
+            currentBlock = self.blocks[i]
+            if (not currentBlock.isMined()):
+                return False
+            if (i > 0):
+                prevBlock = self.blocks[i - 1]
+                if (prevBlock.getHash() != currentBlock.previousHash):
+                    return False
+        return True
 
     def toString(self):
         chainLen = len(self.blocks)

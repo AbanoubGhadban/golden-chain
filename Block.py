@@ -41,3 +41,7 @@ class Block:
                 self.pounce = 0
             else:
                 self.pounce += 1
+
+    def isMined(self, diff=4):
+        hash = self.getHash()
+        return hash[0:diff] == "0"*diff
