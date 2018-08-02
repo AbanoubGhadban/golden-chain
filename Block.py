@@ -47,9 +47,15 @@ class Block:
         return hash[0:diff] == "0"*diff
 
     def equal(self, block):
-        self.blockNo = block.blockNo
-        self.transactions = block.tns
-        self.previousHash = block.prevHash
-
-        self.pounce = block.pounce
-        self.timeStamp = block.timeStamp
+        c1 = (self.blockNo == block.blockNo and
+              self.previousHash == block.previousHash and
+              self.pounce == block.pounce and
+              self.timeStamp == block.timeStamp)
+        if (not c1):
+            return False
+        if (len(self.transactions) != len(block.transactions)):
+            return False
+        for i in range(len(self.transactions)):
+            if (not self.transactions[i].equal(block.transactions[i])):
+                return False
+        return True

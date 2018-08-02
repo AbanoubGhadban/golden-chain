@@ -13,3 +13,10 @@ class Transaction:
 
     def toString(self):
         return str(self.sender) + " --> " + str(self.receiver) + " (" + str(self.amount) + ")"
+
+    def equal(self, transaction):
+        return (
+            self.sender == transaction.sender and
+            self.receiver == transaction.receiver and
+            self.amount == transaction.amount
+        )
