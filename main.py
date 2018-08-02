@@ -31,7 +31,7 @@ def receive():
         chain = newChain
         return "Chain Received"
     elif (newTrCount == currentTrCount):
-        if (not chain.equal(chain)):
+        if (not chain.equal(newChain)):
             return "Invalid Blockchain", 400
         return "Chain Received"
     else:
